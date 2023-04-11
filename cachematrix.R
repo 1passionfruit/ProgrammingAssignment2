@@ -2,19 +2,19 @@
 ## functions do
 
 ## Write a short comment describing this function
-##function defines 4 functions for x and stores a cached Inverse of x
+##function defines 4 functions, x and stores a cached Inverse of some matrix
 
 makeCacheMatrix <- function(x = matrix()) {
   
   cachedMatrix<-NULL ##cached matrix
   
-  ##funtions to mutate/access 
+  ##funtions to mutate/access inputMatrix
   set <- function(newMatrixInput){ ##set inputMatrix
     x<<-newMatrixInput
     cachedMatrix<<-NULL
   }
   
-  get<- function() x ##return InputMatrix
+  get<- function() x ##return inputMatrix
   
   ##functions to mutate/access the inverse
   setInverse<-function(inverse) cachedMatrix<<-inverse
@@ -32,10 +32,11 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
     inverseMatrix<-x$getInverse()
     if(!is.null(inverseMatrix)){ ##if is.Null() is False, matrix already cached
+                                            ##and new matrix equal last matrix
       message("getting cached matrix")
       return(inverseMatrix)
     }
-    matrixData<-x$get() ##does this really do anything??
+    matrixData<-x$get() ##does this really do anything?? yes it does!!
     inverseMatrix <-solve(matrixData)
     x$setInverse(inverseMatrix)
     inverseMatrix
